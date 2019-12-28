@@ -60,17 +60,17 @@ class App extends React.Component {
   state = {
     selected: {
       duration: 6,
-      unit: 'MONTH',
+      durationUnit: 'MONTH',
       amount: 20000,
     },
   };
 
-  handleChipClick = ({ duration, unit }) => {
+  handleChipClick = ({ duration, durationUnit }) => {
     this.setState({
       selected: {
         ...this.state.selected,
         duration,
-        unit,
+        durationUnit,
       },
     });
   };
