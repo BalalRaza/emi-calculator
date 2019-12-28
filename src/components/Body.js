@@ -8,7 +8,12 @@ import {
 } from '@material-ui/core';
 
 import Currency from './Currency';
-import { minBy, maxBy, groupByDuration } from '../util/util';
+import {
+  minBy,
+  maxBy,
+  groupBy,
+  groupByDuration,
+} from '../util/util';
 
 import styles from '../assets/jss/components/Body';
 
@@ -18,7 +23,6 @@ class Body extends React.Component {
       classes,
       data,
       selectedAmount,
-      sliderMarks,
     } = this.props;
 
     const minLoanAmount = minBy(data, 'amount');
@@ -30,6 +34,10 @@ class Body extends React.Component {
         duration: value[0].duration,
         durationUnit: value[0].durationUnit,
       }));
+
+    const groupedByAmount = groupBy(data, 'amount');
+    const sliderMarks = Object.keys(groupedByAmount)
+      .map(item => ({ value: Number(item) }));
 
     return (
       <div className={classes.root}>

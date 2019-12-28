@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import Body from '../components/Body';
 import Footer from '../components/Footer';
 
-import { maxBy, groupBy } from '../util/util';
+import { maxBy } from '../util/util';
 
 import styles from '../assets/jss/pages/App';
 
@@ -86,13 +86,8 @@ class App extends React.Component {
 
   render() {
     const { classes } = this.props;
-    
-    const groupedByAmount = groupBy(data, 'amount');
 
     const maxLoanAmount = maxBy(data, 'amount');
-
-    const sliderMarks = Object.keys(groupedByAmount)
-      .map(item => ({ value: Number(item) }));
 
     return (
       <div className={classes.root}>
@@ -100,7 +95,6 @@ class App extends React.Component {
           <Header eligibleLoanAmount={maxLoanAmount} />
           <Body
             data={data}
-            sliderMarks={sliderMarks}
             selectedAmount={this.state.selected.amount}
             onChangeSlider={this.onChangeSlider}
             handleChipClick={this.handleChipClick}
