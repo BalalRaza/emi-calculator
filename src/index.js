@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { MuiThemeProvider } from '@material-ui/core';
 
+import ErrorBoundary from './components/ErrorBoundary';
 import App from './pages/App';
 
 import './index.css';
@@ -12,7 +13,9 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render((
   <MuiThemeProvider theme={theme}>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </MuiThemeProvider>
 ), document.getElementById('root'));
 
