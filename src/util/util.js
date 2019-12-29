@@ -55,3 +55,10 @@ export function groupByDuration(data) {
     return acc;
   }, {});
 }
+
+export function isEmpty(arr) {
+  if (arr) {
+    return arr.length === 0;
+  }
+  return false;
+}

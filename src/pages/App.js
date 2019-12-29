@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import Body from '../components/Body';
 import Footer from '../components/Footer';
 
-import { maxBy } from '../util/util';
+import { maxBy, isEmpty } from '../util/util';
 import { URL } from '../config/config';
 
 import styles from '../assets/jss/pages/App';
@@ -23,7 +23,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    if (this.state.data.length === 0) {
+    if (isEmpty(this.state.data)) {
       let res;
 
       return this.fetchData()
@@ -102,7 +102,7 @@ class App extends React.Component {
     const { classes } = this.props;
     const { data } = this.state;
 
-    if (data.length === 0) {
+    if (isEmpty(data)) {
       return (
         <div className={classes.root}>
           <CircularProgress color="secondary" />
