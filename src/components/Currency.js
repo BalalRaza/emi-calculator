@@ -22,7 +22,12 @@ function getFormattedAmount(number) {
 }
 
 function Currency(props) {
-  const formattedAmount = getFormattedAmount(props.amount);
+  const { amount } = props;
+  if (!amount) {
+    return '-';
+  }
+
+  const formattedAmount = getFormattedAmount(amount);
 
   return props.padWithSpaces
     ? ` ₹${formattedAmount} `
