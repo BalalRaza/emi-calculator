@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Typography, IconButton } from '@material-ui/core';
+import { Typography, Tooltip } from '@material-ui/core';
 import { HelpOutlineOutlined as HelpIcon } from '@material-ui/icons';
 
 import Currency from './Currency';
@@ -30,10 +30,13 @@ function Header(props) {
         </Typography>
       </div>
 
-      <div>
-        <IconButton aria-label="info">
+      <div className={classes.iconContainer}>
+        <Tooltip
+          title="The maximum amount of loan you are eligible to apply for"
+          placement="bottom-end"
+        >
           <HelpIcon color="secondary" />
-        </IconButton>
+        </Tooltip>
       </div>
     </div>
   );

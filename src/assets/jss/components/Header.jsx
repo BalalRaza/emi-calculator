@@ -8,6 +8,13 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontWeight: 'bold',
   },
+  subtitle: {
+    lineHeight: 1.7,
+  },
+  iconContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 export default useStyles;

@@ -10,6 +10,10 @@ const useStyles = makeStyles(theme => ({
   amount: {
     fontWeight: 'bold',
   },
+  iconContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 export default useStyles;

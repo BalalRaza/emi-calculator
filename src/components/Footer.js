@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Typography, IconButton } from '@material-ui/core';
+import { Typography, Tooltip } from '@material-ui/core';
 import { HelpOutlineOutlined as HelpIcon } from '@material-ui/icons';
 
 import Currency from './Currency';
@@ -21,10 +21,13 @@ function Footer(props) {
         </Typography>
       </div>
 
-      <div>
-        <IconButton className={classes.iconButton} aria-label="info">
+      <div className={classes.iconContainer}>
+        <Tooltip
+          title="The amount you need to pay per month to repay the loan"
+          placement="bottom-end"
+        >
           <HelpIcon color="secondary" />
-        </IconButton>
+        </Tooltip>
       </div>
     </div>
   );
