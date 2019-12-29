@@ -139,7 +139,7 @@ class App extends React.Component {
             handleChipClick={this.handleChipClick}
             sliderData={productsForDuration}
           />
-          <Footer />
+          <Footer emiAmount={emiAmount} />
         </Paper>
       </div>
     );

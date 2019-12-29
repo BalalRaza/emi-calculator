@@ -7,7 +7,7 @@ import Currency from './Currency';
 
 import useStyles from '../assets/jss/components/Footer';
 
-function Footer() {
+function Footer(props) {
   const classes = useStyles();
 
   return (
@@ -17,7 +17,7 @@ function Footer() {
           Calculated EMI
         </Typography>
         <Typography variant="h5" color="primary" className={classes.amount}>
-          <Currency amount={5299} />
+          <Currency amount={props.emiAmount} />
         </Typography>
       </div>
 
