@@ -57,6 +57,7 @@ class Body extends React.Component {
           step={null}
           onChange={(event, value) => this.props.onChangeSlider(value)}
           value={selectedAmount}
+          disabled={sliderData.length === 1}
         />
 
         <Typography variant="overline">
