@@ -52,12 +52,6 @@ class Body extends React.Component {
         <Slider
           aria-label="select advanced amount"
           color="secondary"
-          classes={{
-            root: classes.sliderRoot,
-            track: classes.track,
-            rail: classes.rail,
-            thumb: classes.thumb,
-          }}
           min={minLoanAmount}
           max={maxLoanAmount}
           marks={sliderMarks}
