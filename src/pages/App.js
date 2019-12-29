@@ -102,6 +102,7 @@ class App extends React.Component {
     const { classes } = this.props;
     const { data } = this.state;
 
+    // Fallback when data is being loaded
     if (isEmpty(data)) {
       return (
         <div className={classes.root}>
