@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 
 import { withStyles } from '@material-ui/core/styles';
 import { Typography, Chip } from '@material-ui/core';
@@ -31,16 +32,19 @@ function LoanDuration(props) {
         {
           chips.map(({ duration, durationUnit}) => {
             const label = `${duration} ${durationUnit}`;
+            const selected = selectedDuration === label;
+
             return (
               <Chip
                 key={label}
                 label={label}
                 onClick={() => props.handleChipClick({ duration, durationUnit })}
                 clickable
-                variant={selectedDuration === label ? 'default' : 'outlined'}
+                variant={selected ? 'default' : 'outlined'}
+                color={selected ? 'secondary' : 'default'}
                 classes={{
                   root: classes.chip,
-                  label: classes.chipLabels,
+                  label: clsx(classes.chipLabels, selected && classes.activeChipLabel),
                 }}
               />
             );
