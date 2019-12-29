@@ -9,6 +9,11 @@ const theme = createMuiTheme({
       main: '#30B299',
     },
   },
+  typography: {
+    overline: {
+      fontSize: '0.9rem',
+    },
+  },
 });
 
 export default responsiveFontSizes(theme);
