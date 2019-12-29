@@ -23,7 +23,7 @@ class ErrorBoundary extends React.Component {
       return (
         <div className={classes.root}>
           <Paper className={clsx(classes.paper, classes.centerContents)}>
-            <Typography variant="h4">
+            <Typography variant="h6">
               Something went wrong. We shall soon fix this.
             </Typography>
           </Paper>
