@@ -3,13 +3,6 @@ const styles = (theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
-  sliderHeading: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  textBold: {
-    fontWeight: 'bold',
-  },
   durationsContainer: {
     flexWrap: 'wrap',
     display: 'flex',
