@@ -11,7 +11,6 @@ import Currency from './Currency';
 import {
   minBy,
   maxBy,
-  groupBy,
   groupByDuration,
 } from '../util/util';
 
@@ -23,10 +22,9 @@ class Body extends React.Component {
       classes,
       data,
       selectedAmount,
+      selectedDuration,
+      sliderData,
     } = this.props;
-
-    const minLoanAmount = minBy(data, 'amount');
-    const maxLoanAmount = maxBy(data, 'amount');
 
     const groupedByDuration = groupByDuration(data);
     const chips = Object.values(groupedByDuration)
@@ -35,9 +33,10 @@ class Body extends React.Component {
         durationUnit: value[0].durationUnit,
       }));
 
-    const groupedByAmount = groupBy(data, 'amount');
-    const sliderMarks = Object.keys(groupedByAmount)
-      .map(item => ({ value: Number(item) }));
+    // Slider Data
+    const sliderMarks = sliderData.map(item => ({ value: Number(item.amount) }));
+    const minAmount = minBy(sliderData, 'amount');
+    const maxAmount = maxBy(sliderData, 'amount');
 
     return (
       <div className={classes.root}>
@@ -52,8 +51,8 @@ class Body extends React.Component {
         <Slider
           aria-label="select advanced amount"
           color="secondary"
-          min={minLoanAmount}
-          max={maxLoanAmount}
+          min={minAmount}
+          max={maxAmount}
           marks={sliderMarks}
           step={null}
           onChange={(event, value) => this.props.onChangeSlider(value)}
@@ -74,7 +73,7 @@ class Body extends React.Component {
                   label={label}
                   onClick={() => this.props.handleChipClick({ duration, durationUnit })}
                   clickable
-                  variant="outlined"
+                  variant={selectedDuration === label ? 'default' : 'outlined'}
                   classes={{
                     root: classes.chip,
                     label: classes.chipLabels,

@@ -66,11 +66,13 @@ class App extends React.Component {
   };
 
   handleChipClick = ({ duration, durationUnit }) => {
+    const products = this.getProductsForDuration({ duration, durationUnit });
+    const maxAmount = maxBy(products, 'amount');
     this.setState({
       selected: {
-        ...this.state.selected,
         duration,
         durationUnit,
+        amount: maxAmount,
       },
     });
   };
@@ -84,10 +86,46 @@ class App extends React.Component {
     });
   };
 
+  /**
+   * @param {{ duration: Number, durationUnit: String }} durationObj Duration object
+   */
+  getProductsForDuration = (durationObj) => {
+    const products = [];
+    const keysToCheck = ['duration', 'durationUnit'];
+
+    data.forEach((item) => {
+      let flag = true;
+      keysToCheck.forEach((key) => {
+        if (durationObj[key] !== item[key]) {
+          flag = false;
+        }
+      });
+      
+      if (flag) {
+        products.push(item);
+      }
+    });
+
+    return products;
+  };
+
   render() {
     const { classes } = this.props;
 
+    // Header data
     const maxLoanAmount = maxBy(data, 'amount');
+
+    // Body data
+    const { duration, durationUnit } = this.state.selected;
+    const selectedDurationText = `${duration} ${durationUnit}`;
+    
+    const productsForDuration = this.getProductsForDuration(this.state.selected);
+
+    // Footer data
+    const selectedProduct = productsForDuration.find((item) => {
+      return item.amount === this.state.selected.amount;
+    });
+    const { emiAmount } = selectedProduct;
 
     return (
       <div className={classes.root}>
@@ -96,8 +134,10 @@ class App extends React.Component {
           <Body
             data={data}
             selectedAmount={this.state.selected.amount}
+            selectedDuration={selectedDurationText}
             onChangeSlider={this.onChangeSlider}
             handleChipClick={this.handleChipClick}
+            sliderData={productsForDuration}
           />
           <Footer />
         </Paper>
