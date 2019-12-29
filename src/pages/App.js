@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, CircularProgress } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 
 import Header from '../components/Header';
 import Body from '../components/Body';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 
 import { maxBy, isEmpty } from '../util/util';
 import { URL } from '../config/config';
@@ -14,6 +15,7 @@ import styles from '../assets/jss/pages/App';
 
 class App extends React.Component {
   state = {
+    loading: false,
     data: [],
     selected: {
       duration: 6,
@@ -24,25 +26,30 @@ class App extends React.Component {
 
   componentDidMount() {
     if (isEmpty(this.state.data)) {
-      let res;
-
-      return this.fetchData()
-        .then(response => {
-          res = response.clone(); // Just in case if JSON has syntax error
-          return response.json();
-        })
-        .then(data => this.setState({ data }))
-        .catch((err) => {
-          if (err instanceof SyntaxError) {
-            return this.fixAndGetJson(res)
-              .then(data => this.setState({ data }));
-          }
-        });
+      this.setState({ loading: true });
+      this.fetchData();
     }
   }
 
-  fetchData() {
-    return fetch(URL);
+  setData = (data) => {
+    this.setState({ data, loading: false });
+  };
+
+  fetchData = () => {
+    let res;
+
+    return fetch(URL)
+      .then(response => {
+        res = response.clone(); // Just in case if JSON has syntax error
+        return response.json();
+      })
+      .then(data => this.setData(data))
+      .catch((err) => {
+        if (err instanceof SyntaxError) {
+          return this.fixAndGetJson(res)
+            .then(data => this.setData(data));
+        }
+      });
   };
 
   fixAndGetJson(response) {
@@ -104,11 +111,7 @@ class App extends React.Component {
 
     // Fallback when data is being loaded
     if (isEmpty(data)) {
-      return (
-        <div className={classes.root}>
-          <CircularProgress color="secondary" />
-        </div>
-      );
+      return <Loader />;
     }
 
     // Header data

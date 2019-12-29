@@ -11,6 +11,11 @@ const styles = (theme) => ({
     width: '40%',
     padding: 20,
   },
+  centerContents: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default styles;
