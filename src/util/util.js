@@ -88,3 +88,14 @@ export function isEmpty(arr) {
   }
   return false;
 }
+
+/**
+ * Gets a random integer between a given range of numbers
+ * @param {Number} a The starting of range
+ * @param {Number} b The ending of range
+ */
+export function getRandomInt(a = 1, b = 0) {
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  return Math.floor(lower + Math.random() * (upper - lower + 1))
+}

@@ -8,32 +8,43 @@ import Body from '../components/Body';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 
-import { maxBy, isEmpty } from '../util/util';
+import { maxBy, isEmpty, getRandomInt } from '../util/util';
 import { URL } from '../config/config';
 
 import styles from '../assets/jss/pages/App';
 
 class App extends React.Component {
   state = {
-    loading: false,
+    loading: true,
     data: [],
-    selected: {
-      duration: 6,
-      durationUnit: 'MONTH',
-      amount: 20000,
-    },
+    selected: {},
   };
 
   componentDidMount() {
     if (isEmpty(this.state.data)) {
-      this.setState({ loading: true });
       this.fetchData();
     }
   }
 
   setData = (data) => {
-    this.setState({ data, loading: false });
+    const randomProduct = this.getRandomProduct(data);
+    this.setState({
+      data,
+      loading: false,
+      selected: { ...randomProduct },
+    });
   };
+
+  getRandomProduct(data) {
+    const randomIndex = getRandomInt(0, data.length - 1);
+    const randomProduct = data[randomIndex];
+
+    return {
+      duration: randomProduct.duration,
+      durationUnit: randomProduct.durationUnit,
+      amount: randomProduct.amount,
+    };
+  }
 
   fetchData = () => {
     let res;
@@ -107,10 +118,10 @@ class App extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { data } = this.state;
+    const { loading, data } = this.state;
 
     // Fallback when data is being loaded
-    if (isEmpty(data)) {
+    if (loading) {
       return <Loader />;
     }
 
