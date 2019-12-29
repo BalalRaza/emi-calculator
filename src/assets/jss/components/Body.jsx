@@ -11,7 +11,6 @@ const styles = (theme) => ({
     fontWeight: 'bold',
   },
   durationsContainer: {
-    marginTop: theme.spacing(2),
     flexWrap: 'wrap',
     display: 'flex',
   },
