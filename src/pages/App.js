@@ -115,7 +115,7 @@ class App extends React.Component {
 
     // Body data
     const { duration, durationUnit } = this.state.selected;
-    const selectedDurationText = `${duration} ${durationUnit}`;
+    const selectedDuration = `${duration} ${durationUnit}`;
     
     const productsForDuration = this.getProductsForDuration(this.state.selected);
 
@@ -132,7 +132,7 @@ class App extends React.Component {
           <Body
             data={data}
             selectedAmount={this.state.selected.amount}
-            selectedDuration={selectedDurationText}
+            selectedDuration={selectedDuration}
             onChangeSlider={this.onChangeSlider}
             handleChipClick={this.handleChipClick}
             sliderData={productsForDuration}
