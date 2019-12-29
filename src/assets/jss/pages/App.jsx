@@ -8,7 +8,11 @@ const styles = (theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.common.white,
-    width: '40%',
+    [theme.breakpoints.up('md')]: {
+      width: '40%',
+    },
+    margin: 5,
+    borderRadius: 10,
     padding: 20,
   },
   centerContents: {

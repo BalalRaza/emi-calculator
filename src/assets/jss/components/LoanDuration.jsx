@@ -10,6 +10,7 @@ const styles = (theme) => ({
   chip: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+    marginRight: theme.spacing(1),
     borderWidth: 2,
     borderColor: labelColor,
   },
