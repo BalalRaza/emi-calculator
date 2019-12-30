@@ -99,3 +99,16 @@ export function getRandomInt(a = 1, b = 0) {
   const upper = Math.floor(Math.max(a, b));
   return Math.floor(lower + Math.random() * (upper - lower + 1))
 }
+
+/**
+ * Fixes known error: Not having a comma after id value in received JSON
+ * @param {Object} response The response received from fetch()
+ */
+export function fixAndGetJson(response) {
+  return response.text()
+    .then((text) => {
+      const regex = /("id": \d)/gi;
+      const fixed = text.replace(regex, '$&,');
+      return JSON.parse(fixed);
+    });
+}

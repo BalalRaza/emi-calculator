@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 
 import { maxBy, isEmpty, getRandomInt } from '../util/util';
-import { URL } from '../config/config';
+import { fetchData } from '../network/api';
 
 import styles from '../assets/jss/pages/App';
 
@@ -22,7 +22,8 @@ class App extends React.Component {
 
   componentDidMount() {
     if (isEmpty(this.state.data)) {
-      this.fetchData();
+      return fetchData()
+        .then(data => this.setData(data));
     }
   }
 
@@ -44,32 +45,6 @@ class App extends React.Component {
       durationUnit: randomProduct.durationUnit,
       amount: randomProduct.amount,
     };
-  }
-
-  fetchData = () => {
-    let res;
-
-    return fetch(URL)
-      .then(response => {
-        res = response.clone(); // Just in case if JSON has syntax error
-        return response.json();
-      })
-      .then(data => this.setData(data))
-      .catch((err) => {
-        if (err instanceof SyntaxError) {
-          return this.fixAndGetJson(res)
-            .then(data => this.setData(data));
-        }
-      });
-  };
-
-  fixAndGetJson(response) {
-    return response.text()
-      .then((text) => {
-        const regex = /("id": \d)/gi;
-        const fixed = text.replace(regex, '$&,');
-        return JSON.parse(fixed);
-      });
   }
 
   handleChipClick = ({ duration, durationUnit }) => {
