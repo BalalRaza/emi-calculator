@@ -1,0 +1,44 @@
+[
+  {
+      "id": 1,
+      "amount": 10000,
+      "duration": 3,
+      "durationUnit": "MONTH",
+      "emiAmount": 3400
+  },
+  {
+      "id": 2,
+      "amount": 10000,
+      "duration": 6,
+      "durationUnit": "MONTH",
+      "emiAmount": 1400
+  },
+  {
+      "id": 3,
+      "amount": 20000,
+      "duration": 6,
+      "durationUnit": "MONTH",
+      "emiAmount": 3450
+  },
+  {
+      "id": 4,
+      "amount": 30000,
+      "duration": 6,
+      "durationUnit": "MONTH",
+      "emiAmount": 5100
+  },
+  {
+      "id": 5,
+      "amount": 30000,
+      "duration": 9,
+      "durationUnit": "MONTH",
+      "emiAmount": 3200
+  },
+  {
+      "id": 6,
+      "amount": 40000,
+      "duration": 1,
+      "durationUnit": "YEAR",
+      "emiAmount": 3600
+  }
+]

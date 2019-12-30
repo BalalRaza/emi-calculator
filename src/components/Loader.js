@@ -10,7 +10,7 @@ function Loader(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-testid="loader">
       <Paper className={clsx(classes.paper, classes.centerContents)}>
         <CircularProgress color="secondary" />
       </Paper>

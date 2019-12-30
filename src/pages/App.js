@@ -116,7 +116,7 @@ class App extends React.Component {
     const { emiAmount } = selectedProduct;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} data-testid="main-container">
         <Paper className={classes.paper}>
           <Header eligibleLoanAmount={maxLoanAmount} />
           <Body
