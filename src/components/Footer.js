@@ -4,6 +4,7 @@ import { Typography, Tooltip } from '@material-ui/core';
 import { HelpOutlineOutlined as HelpIcon } from '@material-ui/icons';
 
 import Currency from './Currency';
+import { footerInformation as tooltipTitle } from '../util/constants';
 
 import useStyles from '../assets/jss/components/Footer';
 
@@ -23,7 +24,7 @@ function Footer(props) {
 
       <div className={classes.iconContainer}>
         <Tooltip
-          title="The amount you need to pay per month to repay the loan"
+          title={tooltipTitle}
           placement="bottom-end"
         >
           <HelpIcon color="secondary" />

@@ -4,6 +4,7 @@ import { Typography, Tooltip } from '@material-ui/core';
 import { HelpOutlineOutlined as HelpIcon } from '@material-ui/icons';
 
 import Currency from './Currency';
+import { headerInformation as tooltipTitle } from '../util/constants';
 
 import useStyles from '../assets/jss/components/Header';
 
@@ -32,7 +33,7 @@ function Header(props) {
 
       <div className={classes.iconContainer}>
         <Tooltip
-          title="The maximum amount of loan you are eligible to apply for"
+          title={tooltipTitle}
           placement="bottom-end"
         >
           <HelpIcon color="secondary" />
