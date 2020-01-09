@@ -8,7 +8,7 @@ import Body from '../components/Body';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 
-import { maxBy, isEmpty, getRandomInt } from '../util/util';
+import { maxBy, isEmpty, getRandomInt, minBy } from '../util/util';
 import { fetchData } from '../network/api';
 
 import styles from '../assets/jss/pages/App';
@@ -91,6 +91,23 @@ class App extends React.Component {
     return products;
   };
 
+  getProductsForAmount = (amount) => {
+    const products = [];
+    this.state.data.forEach((item) => {
+      if (item.amount === amount) {
+        products.push(item);
+      }
+    });
+
+    return products;
+  };
+
+  getSliderData(data) {
+    let amounts = data.map(obj => obj.amount);
+    amounts = new Set(amounts);
+    return [...amounts]; // convert to array and return
+  }
+
   render() {
     const { classes } = this.props;
     const { loading, data } = this.state;
@@ -107,12 +124,18 @@ class App extends React.Component {
     const { duration, durationUnit } = this.state.selected;
     const selectedDuration = `${duration} ${durationUnit}`;
     
-    const productsForDuration = this.getProductsForDuration(this.state.selected);
+    const sliderData = this.getSliderData(data);
+    console.log('2', sliderData);
 
     // Footer data
-    const selectedProduct = productsForDuration.find((item) => {
-      return item.amount === this.state.selected.amount;
+    const productsForSelectedAmount = this.getProductsForAmount(this.state.selected.amount);
+    console.log('11', productsForSelectedAmount);
+
+    const selectedProduct = productsForSelectedAmount.find((item) => {
+      return item.duration === this.state.selected.duration
+        && item.durationUnit === this.state.selected.durationUnit;
     });
+  
     const { emiAmount } = selectedProduct;
 
     return (
@@ -125,7 +148,7 @@ class App extends React.Component {
             selectedDuration={selectedDuration}
             onChangeSlider={this.onChangeSlider}
             handleChipClick={this.handleChipClick}
-            sliderData={productsForDuration}
+            sliderData={sliderData}
           />
           <Footer emiAmount={emiAmount} />
         </Paper>

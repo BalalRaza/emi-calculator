@@ -40,7 +40,6 @@ function SelectAmount(props) {
         step={null}
         onChange={(event, value) => props.onChangeSlider(value)}
         value={selectedAmount}
-        disabled={sliderData.length === 1}
       />
     </React.Fragment>
   );
