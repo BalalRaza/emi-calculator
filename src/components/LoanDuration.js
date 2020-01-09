@@ -13,6 +13,7 @@ function LoanDuration(props) {
     classes,
     data,
     selectedDuration,
+    selectedAmount,
   } = props;
 
   const groupedByDuration = groupByDuration(data);
@@ -20,6 +21,7 @@ function LoanDuration(props) {
       .map((value) => ({
         duration: value[0].duration,
         durationUnit: value[0].durationUnit,
+        disabled: value[0].amount === selectedAmount,
       }));
 
   return (
@@ -30,7 +32,7 @@ function LoanDuration(props) {
 
       <div className={classes.container}>
         {
-          chips.map(({ duration, durationUnit}) => {
+          chips.map(({ duration, durationUnit, disabled}) => {
             const label = `${duration} ${durationUnit}`;
             const selected = selectedDuration === label;
 
@@ -40,6 +42,7 @@ function LoanDuration(props) {
                 label={label}
                 onClick={() => props.handleChipClick({ duration, durationUnit })}
                 clickable
+                disabled={disabled}
                 variant={selected ? 'default' : 'outlined'}
                 color={selected ? 'secondary' : 'default'}
                 classes={{

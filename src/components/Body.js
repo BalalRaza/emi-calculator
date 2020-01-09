@@ -26,6 +26,7 @@ function Body(props) {
 
       <LoandDuration
         data={data}
+        selectedAmount={selectedAmount}
         selectedDuration={selectedDuration}
         handleChipClick={props.handleChipClick}
       />
